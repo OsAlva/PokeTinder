@@ -1,11 +1,11 @@
 const express = require('express');
+const isLoggedIn = require('../middleware/isLoggedIn');
 const router = express.Router();
 const User = require('../models/User.model');
 
 //HOME PAGE
-router.get("/", (req, res, next) => {
-  if(!req.session) res.render("index");
-  else res.render('profile/:id')
+router.get("/", isLoggedIn, (req, res, next) => {
+  res.render('profile')
 });
 
 // //LOGGIN PAGE
@@ -31,22 +31,7 @@ router.get("/", (req, res, next) => {
 // });
 
 
-// //MATCH PAGE
-router.get("/match", /*isLogged,*/ (req, res, next) => {
-  users.find()
-  .then(result => {
-    const usersArr = result.map(element => { if(!req.session.matches[1].find(element.id)) element });
-    res.render('match', usersArr[0])
-  })
-  .catch(err => next(err))
-});
-router.post("/match/:id", /*isLogged,*/ (req, res, next) => {
-  const otherUser = req.params
-  const myId = req.session.id
-  req.session.matches.push(otherUser)
-  if(otherUser.matches.find({yes, myId})) res.render("chat");
-  else res.render('match')
- });
+
 
 // //CHAT PAGE
 // router.get("/chat/:id", isLogged, (req, res, next) => {
@@ -54,10 +39,10 @@ router.post("/match/:id", /*isLogged,*/ (req, res, next) => {
 // });
 
 // //ADMIN PAGE: Update & Delete
-// router.get("/profile/:id", isAdmin, (req, res, next) => {
+// router.get("/admin/:id", isAdmin, (req, res, next) => {
 //   res.render("profile");
 // });
-// router.post("/profile/:id", isAdmin, (req, res, next) => {
+// router.post("/admin/:id", isAdmin, (req, res, next) => {
 //   res.render("profile");
 // });
 
