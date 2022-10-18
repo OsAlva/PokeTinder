@@ -3,6 +3,7 @@ const User = require("../models/User.model.js");
 module.exports = router;
 const express = require('express');
 const isAdmin = require("../middleware/isAdmin");
+const isLoggedIn = require("../middleware/isLoggedIn");
 
 //HOME PAGE
 router.get("/", /*notLogged,*/ (req, res, next) => {
