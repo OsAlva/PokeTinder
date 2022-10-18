@@ -1,6 +1,8 @@
-<<<<<<< HEAD
 const router = require("express").Router();
 const User = require("../models/User.model.js");
+module.exports = router;
+const express = require('express');
+
 //HOME PAGE
 router.get("/", /*notLogged,*/ (req, res, next) => {
   res.render("index");
@@ -47,6 +49,12 @@ router.post("/newUser", (req, res, next) => {
   next(err);
   });
 });
+
+//EDITAR PERFIL
+router.post("/profile/:id/update", /*isLogged,*/ (req, res, next) => {
+  res.render("profile");
+});
+
 /////////////////
 
 
@@ -100,11 +108,6 @@ router.get("/profile/:id",/* isAdmin,*/ (req, res, next) => {
 router.post("/profile/:id",/* isAdmin,*/ (req, res, next) => {
   res.render("profile");
 });
-module.exports = router;
-=======
-const express = require('express');
-const router = express.Router();
-const User = require('../models/User.model');
 
 //HOME PAGE
 router.get("/", (req, res, next) => {
@@ -167,4 +170,3 @@ router.post("/match/:id", /*isLogged,*/ (req, res, next) => {
 
 
 module.exports = router;
->>>>>>> 2fbcb884ff2ecab74d792dcb426d4de8e4a90ded
