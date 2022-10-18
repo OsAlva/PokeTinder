@@ -13,12 +13,14 @@ router.get('/', (req, res, next) => {
 
 router.get('/create', (req, res, next) => {
     res.render('chats/create');
+   // res.render('auth/signup');
 })
 
 router.post('/create', (req, res, next) => {
     User.create(req.body)
     .then(result => {
         res.redirect('/chats');
+       // res.render('auth/signup');
     })
     .catch(err => {
         console.log(err)
