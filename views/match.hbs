@@ -1,5 +1,5 @@
 <div class="containerBgImg" style="background-image: url({{img}});">
-    {{username}}
+    {{#if username}}
     <form action="/match" method="POST">
         <input type="hidden" name="resolution" value="yes">
         <input type="hidden" name="userId" value={{_id}}>
@@ -10,4 +10,5 @@
         <input type="hidden" name="userId" value={{_id}}>
         <button type="submit">NO</button>
     </form>
+    {{/if }}
 </div>

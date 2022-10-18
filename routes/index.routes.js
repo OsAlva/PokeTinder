@@ -2,6 +2,7 @@ const router = require("express").Router();
 const User = require("../models/User.model.js");
 module.exports = router;
 const express = require('express');
+const isAdmin = require("../middleware/isAdmin");
 
 //HOME PAGE
 router.get("/", /*notLogged,*/ (req, res, next) => {
@@ -9,12 +10,12 @@ router.get("/", /*notLogged,*/ (req, res, next) => {
 });
 
 //LOGGIN PAGE
-router.get("/loggin",/* notLogged,*/ (req, res, next) => {
-  res.render("loggin");
-});
-router.post("/loggin", /*notLogged,*/ (req, res, next) => {
-  res.render("profile");
-});
+// router.get("/loggin",/* notLogged,*/ (req, res, next) => {
+//   res.render("loggin");
+// });
+// router.post("/loggin", /*notLogged,*/ (req, res, next) => {
+//   res.render("profile");
+// });
 
 
 //PROFILE PAGE --oscar 
@@ -22,7 +23,7 @@ router.get("/profile/:id", /*isLogged,*/ (req, res, next) => {
   console.log(req.session.id);
   User.findById(req.session.id)
   .then((user) => {
-  // res.render("profile", { user });
+    res.render("profile", { user });
    })
   .catch((err) => {
   console.log(err);
@@ -30,26 +31,26 @@ router.get("/profile/:id", /*isLogged,*/ (req, res, next) => {
   });
 });
 
-//Borrar luego para agregar usuarios
-router.get("/newUser", (req, res, next) => {
-  res.render("newUser");
-});
+// //Borrar luego para agregar usuarios
+// router.get("/newUser", (req, res, next) => {
+//   res.render("newUser");
+// });
 
-router.post("/newUser", (req, res, next) => {
-  User.create(req.body)
-  .then((user) => {
-    console.log("user", user);
-    const data = {
-      createOk: true,
-      user: result
-    }
-    res.render("newUser", data);
-  })
-  .catch((err) => {
-  console.log(err);
-  next(err);
-  });
-});
+// router.post("/newUser", (req, res, next) => {
+//   User.create(req.body)
+//   .then((user) => {
+//     console.log("user", user);
+//     const data = {
+//       createOk: true,
+//       user: result
+//     }
+//     res.render("newUser", data);
+//   })
+//   .catch((err) => {
+//   console.log(err);
+//   next(err);
+//   });
+// });
 
 //EDITAR PERFIL
 router.post("/profile/:id/update", /*isLogged,*/ (req, res, next) => {
@@ -152,12 +153,14 @@ router.post("/profile/:id",/* isAdmin,*/ (req, res, next) => {
 // });
 
 // //ADMIN PAGE: Update & Delete
-// router.get("/profile/:id", isAdmin, (req, res, next) => {
-//   res.render("profile");
-// });
-// router.post("/profile/:id", isAdmin, (req, res, next) => {
-//   res.render("profile");
-// });
+router.get("/admin", isAdmin, (req, res, next) => {
+  res.render("admin");
+});
+router.post("/profile/:id", isAdmin, (req, res, next) => {
+  res.render("profile");
+});
+
+
 
 
 module.exports = router;

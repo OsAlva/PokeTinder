@@ -1,28 +1,32 @@
 <div id="form">
   <h2>Sign Up</h2>
+  <br>
   <form action="/auth/signup" method="POST">
-
-    <label> Username
+    <label> Username: 
       <input type="text" name="username" placeholder="Your username" />
     </label>
-
-    <label> Email
+    <br><br>
+    <label> Email: 
       <input type="email" name="email" placeholder="Your email" />
     </label>
-
-    <label> Password
+    <br><br>
+    <label> Password: 
       <input type="password" name="password" placeholder="Your password" />
     </label>
-    <label> Edad
+    <br><br>
+    <label> Edad: 
       <input type="number" name="edad" placeholder="Your age" />
     </label>
-    <label> Gender
+    <br><br>
+    <label> Gender: 
       <input type="text" name="gender" placeholder="Your gender" />
     </label>
-    <label>Phone Number
+    <br><br>
+    <label>Phone Number: 
       <input type="number" name="phone" placeholder="Your phone" />
     </label>
-    <button type="submit">Sign Up</button>
+    <br><br>
+    <button type="submit">Sign Up: </button>
 
 
     {{#if errorMessage}}

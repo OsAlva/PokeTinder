@@ -9,13 +9,14 @@
     {{!-- <label> Email
       <input type="email" name="email" placeholder="Your email" />
     </label> --}}
-
+    <br><br>
     <label> Password
       <input type="password" name="password" placeholder="Your password" />
     </label>
-
+    <br>
+    <br>
     <button type="submit">Log In</button>
-
+    <a href="/auth/signup">Sign Up</a>
 
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
