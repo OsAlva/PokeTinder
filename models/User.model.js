@@ -12,7 +12,6 @@ const userSchema = new Schema(
     matches: [ {
       resolution: {enum: ['yes', 'no']},
       userId: {type: Schema.Types.ObjectId, ref: 'User'},
-      response: {enum: ['yes', 'no']}
     } ],
     phoneMe: {type: Number}
     // location: GOOGLEMAPS API

@@ -1,12 +1,17 @@
-<div class="containerBgImg" style="background-image: url({{img}});">
+    {{_doc.username}}
+<div class="containerBgImg" style="background-image: url({{_doc.img}});">
     <form action="/match" method="POST">
         <input type="hidden" name="resolution" value="yes">
-        <input type="hidden" name="userId" value={{_id}}>
+        <input type="hidden" name="userId" value={{_doc._id}}>
         <button class="btn btn-primary" type="submit">YES</button>
     </form>
     <form action="/match" method="POST">
         <input type="hidden" name="resolution" value="no">
-        <input type="hidden" name="userId" value={{_id}}>
+        <input type="hidden" name="userId" value={{_doc._id}}>
         <button class="btn btn-danger" type="submit">NO</button>
     </form>
 </div>
+
+{{#if Chat}}
+    <a href="chats/chatList.hbs">Tienes un match!</a>
+{{/if}}
