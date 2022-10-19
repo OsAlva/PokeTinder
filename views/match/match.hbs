@@ -4,15 +4,14 @@
     {{#if users}}
     {{#each users}}
     <form action="/match" method="POST">
-    {{this.username}}
+    {{this}}
     <br>
-        <input type="hidden" name="likes" value="{{_id}}">
+        <input type="hidden"  name="{{this.username}}" value="{{this._id}}">
         {{!-- <input type="hidden" name="userId" value={{_id}}> --}}
         <button type="submit">YES</button>
     </form>
     <form action="/match" method="POST">
-        <input type="hidden" name="resolution" value="no">
-        <input type="hidden" name="userId" value={{_id}}>
+        <input type="hidden" name="dislikes" value="{{this}}">
         <button type="submit">NO</button>
     </form>
     {{/each}}

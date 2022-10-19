@@ -92,7 +92,7 @@ router.post("/profile/:id/delete", /*isLogged,*/ (req, res, next) => {
 
 //HOME PAGE
 router.get("/", isLoggedIn, (req, res, next) => {
-  res.render('profile')
+  res.render('user/profile')
 });
 
 // //LOGGIN PAGE

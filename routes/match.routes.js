@@ -4,11 +4,9 @@ const User = require('../models/User.model');
 
 // //MATCH PAGE
 router.get("/", /*isLogged,*/ (req, res, next) => {
-  User.find(req.session.currentUser._id)
+  User.find()
   // {_id: {$ne: req.session.currentUser._id}}
   .then(result => {
-    const currentUser = result;
-    console.log('')
     res.render('match/match', {users: result});
   })
   .catch(err => {
@@ -16,9 +14,14 @@ router.get("/", /*isLogged,*/ (req, res, next) => {
   })
   });
 router.post("/", /*isLogged,*/ (req, res, next) => {
-    User.findById()
+    User.findById(req.session.currentUser._id)
     .then(result => {
-
+      const logedUser = result;
+      console.log('BODYYY----------------->', req.body)
+      // logedUser.likes.push(req.body)
+      console.log('whats is this ----------------->', logedUser.likes)
+      
+      res.render('match/match', logedUser.username)
     })
     .catch(err => {
       console.log(err)
