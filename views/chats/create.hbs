@@ -1,0 +1,20 @@
+<h1>Create User</h1>
+<a href="/chats">Chat List</a>
+<br>
+
+<form action="/chats/create" method="POST">
+    <input type="text" placeholder="username" name="username">
+    <input type="password" placeholder="password" name="password">
+    <input type="number" placeholder="edad" name="edad">
+    <input type="text" placeholder="gender" name="gender">
+    {{!-- <input type="text" placeholder="matches" name="matches"> --}}
+    {{!-- <input type="text" placeholder="matches" name="matches"> --}}
+
+    {{!-- <label for="gender">Choose gender:</label>
+<select name="gender" id="gender" multiple>
+    {{#each dbCelebs}}
+  <option value="{{this._id}}">{{this.name}}</option>
+    {{/each}}
+</select> --}}
+    <button type="submit">Submit</button>
+    </form>

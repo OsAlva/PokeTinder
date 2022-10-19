@@ -10,3 +10,20 @@ a {
 h1 {
   color: 15px;
 }
+
+.containerBgImg {
+  margin: auto;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 600px;
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 20px;
+}
+
+
+.containerBgImg button {
+  width: 120px;
+}
