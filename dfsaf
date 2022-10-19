@@ -1,0 +1,112 @@
+[33mcommit 50515dc984a50f25056b3fa7be9d87a32f84cb31[m[33m ([m[1;36mHEAD -> [m[1;32myabel[m[33m)[m
+Merge: 5f72294 1f82032
+Author: Yabel <yabelrr@gmail.com>
+Date:   Tue Oct 18 18:07:54 2022 +0200
+
+    Merge branch 'oscar' of https://github.com/OsAlva/PokeTinder into yabel
+
+[33mcommit 5f722948e2061cbecaaf9604343342444b15bc18[m[33m ([m[1;31morigin/yabel[m[33m)[m
+Author: Yabel <yabelrr@gmail.com>
+Date:   Tue Oct 18 17:59:07 2022 +0200
+
+    Ready to pull oscar to log in and sign up users
+
+[33mcommit 1f8203238fa11503fe5d56727f7bdd117c4d6eb3[m[33m ([m[1;31morigin/oscar[m[33m)[m
+Merge: 313c9a6 aa4ca19
+Author: Oscar Alva <oscaraldrin23@gmail.com>
+Date:   Tue Oct 18 16:39:14 2022 +0200
+
+    algo4
+
+[33mcommit 313c9a62b0aac657fe8edde38e2bc89914d2a4bc[m
+Author: Oscar Alva <oscaraldrin23@gmail.com>
+Date:   Tue Oct 18 16:35:35 2022 +0200
+
+    admin prueba
+
+[33mcommit aa4ca194587c7bf5dddc05df67ef8d18280567a5[m
+Author: Nahuel Cimini <nahuel.cimini@gmail.com>
+Date:   Tue Oct 18 16:35:08 2022 +0200
+
+    fritata
+
+[33mcommit 103e8b22eaab309f9ea9d93c3c60cd77019e816d[m
+Author: Oscar Alva <oscaraldrin23@gmail.com>
+Date:   Tue Oct 18 15:13:40 2022 +0200
+
+    auth ok falta ver a donde renderiza
+
+[33mcommit d3c92c687c9622f2a166508faf597a12612e4b64[m
+Author: Yabel <yabelrr@gmail.com>
+Date:   Tue Oct 18 11:45:45 2022 +0200
+
+    Bootsratp installed, Chat List updated using bootstrap
+
+[33mcommit 340f4680c6a21711eb23b77df28433672588874d[m
+Merge: 9213e81 9639da1
+Author: Oscar Alva <oscaraldrin23@gmail.com>
+Date:   Tue Oct 18 09:38:17 2022 +0200
+
+    algo4
+
+[33mcommit 9639da1a17f106e318f9480612da7cc63a82f8de[m
+Author: Yabel <yabelrr@gmail.com>
+Date:   Tue Oct 18 09:34:46 2022 +0200
+
+    Create users route and Chat List view
+
+[33mcommit 9213e81e924ab1bb8c0252af3ade35fb70797c75[m
+Merge: 334192f 2fbcb88
+Author: Oscar Alva <oscaraldrin23@gmail.com>
+Date:   Tue Oct 18 09:27:14 2022 +0200
+
+    algo3
+
+[33mcommit 334192faee5f20605eb7492514c820b6cb5b34f0[m
+Author: Oscar Alva <oscaraldrin23@gmail.com>
+Date:   Tue Oct 18 09:20:03 2022 +0200
+
+    prueba
+
+[33mcommit 2fbcb884ff2ecab74d792dcb426d4de8e4a90ded[m
+Author: Nahuel Cimini <nahuel.cimini@gmail.com>
+Date:   Tue Oct 18 00:03:56 2022 +0200
+
+    checkout ya estaba declarado. Solved
+
+[33mcommit 3d39daa830d84fc28dcd3120c8315791b6c50b31[m
+Author: Nahuel Cimini <nahuel.cimini@gmail.com>
+Date:   Mon Oct 17 23:45:34 2022 +0200
+
+    reqSession halfdone, matchLogic done, added bootstrapCdns
+
+[33mcommit 12a8bb93ce92e182f117bb00c3e1a05bd94d8bc9[m
+Merge: 0d5601b 21e4c7f
+Author: Oscar Alva <oscaraldrin23@gmail.com>
+Date:   Mon Oct 17 17:46:23 2022 +0200
+
+    algo3
+
+[33mcommit c9fedc8a00cd2a03b227bd06ac1bd458cadddbfc[m
+Author: Yabel <yabelrr@gmail.com>
+Date:   Mon Oct 17 17:42:43 2022 +0200
+
+    user model
+
+[33mcommit 0d5601b9a7188053ae843dc68588be5508598c79[m
+Author: Oscar Alva <oscaraldrin23@gmail.com>
+Date:   Mon Oct 17 17:42:19 2022 +0200
+
+    algo2
+
+[33mcommit 21e4c7f93c861d629d3e235c703742377f834b86[m[33m ([m[1;31morigin/nahuel[m[33m)[m
+Author: Nahuel Cimini <nahuel.cimini@gmail.com>
+Date:   Mon Oct 17 17:35:57 2022 +0200
+
+    modelUser
+
+[33mcommit 949b0971232afaa652eafdc34deb6f5a99e7ab41[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Oscar Alva <oscaraldrin23@gmail.com>
+Date:   Mon Oct 17 16:23:16 2022 +0200
+
+    tinder

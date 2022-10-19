@@ -90,6 +90,7 @@ router.post("/profile/:id/delete", /*isLogged,*/ (req, res, next) => {
   res.render("profile");
 });
 
+
 //HOME PAGE
 router.get("/", isLoggedIn, (req, res, next) => {
   res.render('profile')
@@ -139,11 +140,12 @@ router.post("/profile/:id",/* isAdmin,*/ (req, res, next) => {
 
 // //ADMIN PAGE: Update & Delete
 router.get("/admin", isAdmin, (req, res, next) => {
-  res.render("admin");
+  res.render("admin/admin");
 });
 router.post("/profile/:id", isAdmin, (req, res, next) => {
   res.render("profile");
 });
+
 
 
 

@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User.model');
+const isLoggedIn = require('../middleware/isLoggedIn')
 
 // //MATCH PAGE
-router.get("/", /*isLogged,*/ async (req, res, next) => {
+router.get("/", isLoggedIn, async (req, res, next) => {
     try {
         const id = req.session.currentUser._id
         const myUser = await User.findById(id)
