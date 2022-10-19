@@ -1,0 +1,14 @@
+<div class="containerBgImg" style="background-image: url({{img}});">
+    {{#if username}}
+    <form action="/match" method="POST">
+        <input type="hidden" name="resolution" value="yes">
+        <input type="hidden" name="userId" value={{_id}}>
+        <button type="submit">YES</button>
+    </form>
+    <form action="/match" method="POST">
+        <input type="hidden" name="resolution" value="no">
+        <input type="hidden" name="userId" value={{_id}}>
+        <button type="submit">NO</button>
+    </form>
+    {{/if }}
+</div>

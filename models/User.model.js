@@ -3,27 +3,15 @@ const { Schema, model } = require("mongoose");
 // TODO: Please make sure you edit the User model to whatever makes sense in this case
 const userSchema = new Schema(
   {
-    username: {
-      type: String,
-      required: false,
-      unique: true,
-      trim: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      trim: true,
-      lowercase: true,
-    },
-    password: {
-      type: String,
-      required: true,
-    },
-  },
-  {
-    // this second object adds extra properties: `createdAt` and `updatedAt`
-    timestamps: true,
+    username: {type: String, required: false}, //, trim: true
+    password: {type: String, required: true},
+    edad: {type: Number},
+    gender: {type: String, enum: ['male', 'female', 'others']},
+    img:{data: Buffer, contentType: String},
+    isAdmin: {type: Boolean, default: false},
+    matches: [ {enum: ['yes', 'no']}, {type: Schema.Types.ObjectId}, {note: String}],
+    phoneMe: {type: Number}
+    // location: GOOGLEMAPS API
   }
 );
 
