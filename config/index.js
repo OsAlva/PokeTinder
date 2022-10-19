@@ -44,7 +44,7 @@ module.exports = (app) => {
   // Sets the view engine to handlebars
   app.set("view engine", "hbs");
   const hbs = require("hbs");
-  hbs.registerPartials(__dirname + "/views/partials");
+  hbs.registerPartials(path.join((__dirname, "..", "views/partials")));
 
   // AHandles access to the public folder
   app.use(express.static(path.join(__dirname, "..", "public")));
