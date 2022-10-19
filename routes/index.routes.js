@@ -138,7 +138,7 @@ router.post("/profile/:id",/* isAdmin,*/ (req, res, next) => {
 // });
 
 // //ADMIN PAGE: Update & Delete
-router.get("/admin", isAdmin, (req, res, next) => {
+router.get("/admin", (req, res, next) => {
   res.render("admin");
 });
 router.post("/profile/:id", isAdmin, (req, res, next) => {
