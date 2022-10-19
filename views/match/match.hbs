@@ -6,12 +6,12 @@
     <form action="/match" method="POST">
     {{this}}
     <br>
-        <input type="hidden"  name="{{this.username}}" value="{{this._id}}">
+        <input type="hidden" name="yes" value="{{_id}}">
         {{!-- <input type="hidden" name="userId" value={{_id}}> --}}
         <button type="submit">YES</button>
     </form>
     <form action="/match" method="POST">
-        <input type="hidden" name="dislikes" value="{{this}}">
+        <input type="hidden" name="no" value="{{_id}}">
         <button type="submit">NO</button>
     </form>
     {{/each}}
