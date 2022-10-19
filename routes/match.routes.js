@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User.model');
-const isLoggedIn = require('../middleware/isLoggedIn')
+const isLoggedIn = require('../middleware/isLoggedIn');
+const navbarApears = require('../utils/navbar');
 
 // //MATCH PAGE
 router.get("/", isLoggedIn, async (req, res, next) => {
@@ -11,7 +12,7 @@ router.get("/", isLoggedIn, async (req, res, next) => {
         const myMatches = myUser.matches
         const others = await User.find()
         const usersArr = others.map(other => { if(!myMatches.includes(other._id)) return other })
-        res.render('match', usersArr[0])
+        res.render('match', {...usersArr[0], ...navbarApears(req.session.currentUser)})
     }
     catch (err) { next(err) }
 });
@@ -31,18 +32,26 @@ router.get("/", isLoggedIn, async (req, res, next) => {
 //   });
 router.post("/", /*isLogged,*/ async (req, res, next) => {
     const other = req.body
+    console.log(other)
     const otherId = other.userId;
-    const otherResolution = other.resolution;
     const otherResult = await User.findById(otherId)
+    const otherResolution = other.resolution;
+    // console.log('el otro el otro el otro', otherResult)
+
     const myId = req.session.currentUser._id
     const result = await User.findById(myId)
     
-    console.log('el otro el otro el otro', otherResult)
-    console.log('a que este es el mismo? ', result)
+    // console.log('a que este es el mismo? ', result)
     
-    // result.matches.push(other)
     // console.log('rickrickrick rickrickrick rickrickrick', result.matches)
-    // if(otherResult.matches.find(myId) & otherResult.matches == 'yes') res.render("chat")
+    otherResult.matches.foreach(element => 
+        {if(element._id == myId & element.resolution == 'yes') {
+            result.matches.response.push(other)
+        }
+    })  
+    res.render("chat", {...navbarApears(req.session.currentUser)})
+    
+    // 
 
 
     
