@@ -138,8 +138,8 @@ router.post("/login", isAdmin, isLoggedOut, (req, res, next) => {
           req.session.currentUser = user.toObject();
           // Remove the password field
           delete req.session.currentUser.password;
-
-          res.redirect("/match");
+          res.render("/profile");
+          res.redirect("/match"); //////AQUI 
         })
         .catch((err) => next(err)); // In this case, we send error handling to the error handling middleware.
     })
