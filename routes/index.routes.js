@@ -6,9 +6,9 @@ const isAdmin = require("../middleware/isAdmin");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
 //HOME PAGE
-router.get("/", /*notLogged,*/ (req, res, next) => {
-  res.render("index");
-});
+// router.get("/", /*notLogged,*/ (req, res, next) => {
+//   res.render("index");
+// });
 
 //LOGGIN PAGE
 // router.get("/loggin",/* notLogged,*/ (req, res, next) => {
@@ -138,8 +138,14 @@ router.post("/profile/:id",/* isAdmin,*/ (req, res, next) => {
 // });
 
 // //ADMIN PAGE: Update & Delete
-router.get("/admin", isAdmin, (req, res, next) => {
-  res.render("admin/admin");
+router.get("/admin", (req, res, next) => {
+  User.find()
+  .then(result => {
+    res.render("admin/admin", {users: result});
+    })
+  .catch(err => {
+      console.log(err)
+  });
 });
 router.post("/profile/:id", isAdmin, (req, res, next) => {
   res.render("profile");
