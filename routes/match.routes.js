@@ -4,23 +4,25 @@ const User = require('../models/User.model');
 
 // //MATCH PAGE
 router.get("/", /*isLogged,*/ (req, res, next) => {
-    User.find()
-    .then(result => {
-      const usersArr = result.map(element => { if(!req.session.matches[1].find(element.id)) element });
-      res.render('match', usersArr[0])
-    })
-    .catch(err => next(err))
+  User.find(req.session.currentUser._id)
+  // {_id: {$ne: req.session.currentUser._id}}
+  .then(result => {
+    const currentUser = result;
+    console.log('')
+    res.render('match/match', {users: result});
+  })
+  .catch(err => {
+    console.log(err)
+  })
   });
 router.post("/", /*isLogged,*/ (req, res, next) => {
-    const otherUser = req.body
-    const {id} = req.session.id
-    User.findById(id)
+    User.findById()
     .then(result => {
-        console.log(result)
+
     })
-    // .push(otherUser)
-    // if(otherUser.matches.find({yes, id})) res.render("chat");
-    // else res.render('match')
+    .catch(err => {
+      console.log(err)
+    })
    });
 
 module.exports = router;

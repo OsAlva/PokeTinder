@@ -1,8 +1,13 @@
+<h1>Match Page</h1>
+<br>
 <div class="containerBgImg" style="background-image: url({{img}});">
-    {{#if username}}
+    {{#if users}}
+    {{#each users}}
     <form action="/match" method="POST">
-        <input type="hidden" name="resolution" value="yes">
-        <input type="hidden" name="userId" value={{_id}}>
+    {{this.username}}
+    <br>
+        <input type="hidden" name="likes" value="{{_id}}">
+        {{!-- <input type="hidden" name="userId" value={{_id}}> --}}
         <button type="submit">YES</button>
     </form>
     <form action="/match" method="POST">
@@ -10,5 +15,6 @@
         <input type="hidden" name="userId" value={{_id}}>
         <button type="submit">NO</button>
     </form>
+    {{/each}}
     {{/if }}
 </div>
