@@ -2,7 +2,7 @@ const router = require("express").Router();
 const User = require("../models/User.model.js");
 module.exports = router;
 const express = require('express');
-<<<<<<< HEAD
+const isLoggedIn = require("../middleware/isLoggedIn");
 const isAdmin = require("../middleware/isAdmin");
 
 //HOME PAGE
@@ -89,11 +89,6 @@ router.post("/profile/:id/update", /*isLogged,*/ (req, res, next) => {
 router.post("/profile/:id/delete", /*isLogged,*/ (req, res, next) => {
   res.render("profile");
 });
-=======
-const isLoggedIn = require('../middleware/isLoggedIn');
-const router = express.Router();
-const User = require('../models/User.model');
->>>>>>> aa4ca194587c7bf5dddc05df67ef8d18280567a5
 
 //HOME PAGE
 router.get("/", isLoggedIn, (req, res, next) => {
@@ -143,7 +138,6 @@ router.post("/profile/:id",/* isAdmin,*/ (req, res, next) => {
 // });
 
 // //ADMIN PAGE: Update & Delete
-<<<<<<< HEAD
 router.get("/admin", isAdmin, (req, res, next) => {
   res.render("admin");
 });
@@ -152,14 +146,6 @@ router.post("/profile/:id", isAdmin, (req, res, next) => {
 });
 
 
-=======
-// router.get("/admin/:id", isAdmin, (req, res, next) => {
-//   res.render("profile");
-// });
-// router.post("/admin/:id", isAdmin, (req, res, next) => {
-//   res.render("profile");
-// });
->>>>>>> aa4ca194587c7bf5dddc05df67ef8d18280567a5
 
 
 module.exports = router;
