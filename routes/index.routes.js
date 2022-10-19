@@ -2,8 +2,8 @@ const router = require("express").Router();
 const User = require("../models/User.model.js");
 module.exports = router;
 const express = require('express');
-const isLoggedIn = require("../middleware/isLoggedIn");
 const isAdmin = require("../middleware/isAdmin");
+const isLoggedIn = require("../middleware/isLoggedIn");
 
 //HOME PAGE
 router.get("/", /*notLogged,*/ (req, res, next) => {
@@ -90,7 +90,6 @@ router.post("/profile/:id/delete", /*isLogged,*/ (req, res, next) => {
   res.render("profile");
 });
 
-
 //HOME PAGE
 router.get("/", isLoggedIn, (req, res, next) => {
   res.render('profile')
@@ -145,7 +144,6 @@ router.get("/admin", isAdmin, (req, res, next) => {
 router.post("/profile/:id", isAdmin, (req, res, next) => {
   res.render("profile");
 });
-
 
 
 
