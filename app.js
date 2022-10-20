@@ -32,6 +32,9 @@ app.use('/match', require('./routes/match.routes'))
 const chatsRoutes = require("./routes/chats.routes");
 app.use("/chats", chatsRoutes);
 
+const photoRoutes = require("./routes/photo.routes");
+app.use('/photos', photoRoutes);
+
 
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes

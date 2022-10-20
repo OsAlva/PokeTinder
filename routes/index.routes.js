@@ -23,6 +23,7 @@ router.get("/profile/:idUser", isLoggedIn, (req, res, next) => {
    }) 
 });
 
+
 router.post("/profile/:idUser", isLoggedIn, (req, res, next) => {
   const idUser = req.params.idUser;
   const {username, email, password} = req.body;
@@ -57,20 +58,6 @@ router.get("/", isLoggedIn, (req, res, next) => {
   res.render('login');
 });
 
-// //PROFILE PAGE
-// router.get("/profile/:id", isLogged, (req, res, next) => {
-//   res.render("profile");
-// });
-// router.post("/profile/:id/create", isLogged, (req, res, next) => {
-//   res.render("profile");
-// });
-// router.post("/profile/:id/update", isLogged, (req, res, next) => {
-//   res.render("profile");
-// });
-// router.post("/profile/:id/delete", isLogged, (req, res, next) => {
-//   res.render("profile");
-// });
-
 
 
 
@@ -79,25 +66,6 @@ router.get("/chat/:id", /*isLogged,*/ (req, res, next) => {
   res.render("chat");
 });
 //ADMIN PAGE: Update & Delete
-router.get("/profile/:id",/* isAdmin,*/ (req, res, next) => {
-  res.render("profile");
-});
-router.post("/profile/:id",/* isAdmin,*/ (req, res, next) => {
-  res.render("profile");
-});
-
-// //CHAT PAGE
-// router.get("/chat/:id", isLogged, (req, res, next) => {
-//   res.render("chat");
-// });
-
-// //ADMIN PAGE: Update & Delete
-router.get("/admin", isAdmin, (req, res, next) => {
-  res.render("admin");
-});
-router.post("/profile/:id", isAdmin, (req, res, next) => {
-  res.render("profile");
-});
 
 
 module.exports = router;
