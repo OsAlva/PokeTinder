@@ -9,9 +9,9 @@ const userSchema = new Schema(
     gender: {type: String, enum: ['male', 'female', 'others']},
     img:{data: Buffer, contentType: String},
     isAdmin: {type: Boolean, default: false},
-    likes: [{type: Schema.Types.ObjectId}],
-    dislikes: [{type: Schema.Types.ObjectId}],
-    matches: [{type: Schema.Types.ObjectId}],
+    likes: [{type: Schema.Types.ObjectId, ref: "User"}],
+    dislikes: [{type: Schema.Types.ObjectId, ref: "User"}],
+    matches: [{type: Schema.Types.ObjectId, ref: "User"}],
     // matches: [ {enum: ['yes', 'no']}, {type: Schema.Types.ObjectId}, {note: String}],
     phoneMe: {type: Number}
     // location: GOOGLEMAPS API

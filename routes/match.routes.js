@@ -20,13 +20,7 @@ router.post("/", /*isLogged,*/ (req, res, next) => {
 
       console.log('aaaaa-------', req.session.currentUser.likes)
       
-     
-      req.session.currentUser.likes.forEach(element => {
-        console.log('ELEMENT --------> ', typeof element)
-        if(!id.equals(element)){
-          return res.redirect('/match')
-        }
-      })
+    
 
       // console.log(typeof req.body.yes)
       // if(req.session.currentUser.likes.includes(req.body.yes)){
@@ -41,12 +35,23 @@ router.post("/", /*isLogged,*/ (req, res, next) => {
       //   return res.redirect('/match')
       // }
 
-
       const id = ObjectId(req.body.yes);
-    
+      let userExists = false;
+       
+      req.session.currentUser.likes.forEach(element => {
+        console.log('ELEMENT --------> ', typeof element)
+        if(id.equals(element)){
+          userExists = true;
+        }
+      })
 
-        User.findByIdAndUpdate(req.session.currentUser._id, { "$push": { "likes": req.body.yes } })
+      if(userExists){
+        return res.redirect('/match');
+      }
+     
+        User.findByIdAndUpdate(req.session.currentUser._id, { "$push": { "likes": req.body.yes } }, {new: true})
         .then(result => {
+          req.session.currentUser = result;
           res.redirect('/match')
         })
         .catch(err => {
@@ -54,8 +59,24 @@ router.post("/", /*isLogged,*/ (req, res, next) => {
         })
 
     } else {
-      User.findByIdAndUpdate(req.session.currentUser._id, { "$push": { "dislikes": req.body.no } })
+
+      const id = ObjectId(req.body.no);
+      let userExists = false;
+       
+      req.session.currentUser.dislikes.forEach(element => {
+        console.log('ELEMENT --------> ', typeof element)
+        if(id.equals(element)){
+          userExists = true;
+        }
+      })
+
+      if(userExists){
+        return res.redirect('/match');
+      }
+
+      User.findByIdAndUpdate(req.session.currentUser._id, { "$push": { "dislikes": req.body.no } }, {new: true})
       .then(result => {
+        req.session.currentUser = result;
         res.redirect('/match')
       })
       .catch(err => {
