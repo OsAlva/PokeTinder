@@ -39,7 +39,7 @@ router.get('/profile/edit', isLoggedIn, (req, res, next) => {
 router.post('/profile/edit', isLoggedIn, (req, res, next) => {
   User.findByIdAndUpdate(req.session.currentUser._id, 
     {username: req.body.username,
-      password: req.body.password,
+      // password: req.body.password,
       edad: req.body.edad,
       gender: req.body.gender,
       phoneMe: req.body.phoneMe
@@ -79,7 +79,7 @@ router.post('/profile/edit', isLoggedIn, (req, res, next) => {
 
 // //ADMIN PAGE: Update & Delete
 router.get("/admin", (req, res, next) => {
-  User.find({ _id: {"$ne": req.session.currentUser}})
+  User.find({ username: {"$ne": "admin"}})
   .then(result => {
     res.render("admin/admin", {users: result});
     })
