@@ -43,9 +43,6 @@ module.exports = (app) => {
   app.set("views", path.join(__dirname, "..", "views"));
   // Sets the view engine to handlebars
   app.set("view engine", "hbs");
-  const hbs = require("hbs");
-  hbs.registerPartials(path.join((__dirname, "..", "views/partials")));
-
   // AHandles access to the public folder
   app.use(express.static(path.join(__dirname, "..", "public")));
 
@@ -64,7 +61,7 @@ module.exports = (app) => {
         sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
         secure: process.env.NODE_ENV === "production",
         httpOnly: true,
-        maxAge: 60000,
+        maxAge: (60000 * 100),
       },
       store: MongoStore.create({
         mongoUrl: MONGO_URI,

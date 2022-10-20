@@ -4,15 +4,15 @@ const { Schema, model } = require("mongoose");
 const userSchema = new Schema(
   {
     username: {type: String, required: false}, //, trim: true
-    password: {type: String, required: true, default: '123456'},
-    edad: {type: Number, default: '99'},
-    gender: {type: String, enum: ['male', 'female', 'others'], default: 'male'},
+    password: {type: String, required: true},
+    edad: {type: Number},
+    gender: {type: String, enum: ['male', 'female', 'others']},
     img:{data: Buffer, contentType: String},
     isAdmin: {type: Boolean, default: false},
-    matches: [ {
-      resolution: {enum: ['yes', 'no']},
-      userId: {type: Schema.Types.ObjectId, ref: 'User'},
-    } ],
+    likes: [{type: Schema.Types.ObjectId}],
+    dislikes: [{type: Schema.Types.ObjectId}],
+    matches: [{type: Schema.Types.ObjectId}],
+    // matches: [ {enum: ['yes', 'no']}, {type: Schema.Types.ObjectId}, {note: String}],
     phoneMe: {type: Number}
     // location: GOOGLEMAPS API
   }

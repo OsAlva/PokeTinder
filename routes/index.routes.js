@@ -24,7 +24,7 @@ router.get("/profile/:id", /*isLogged,*/ (req, res, next) => {
   console.log(req.session.id);
   User.findById(req.session.id)
   .then((user) => {
-    res.render("profile", { user, ...navbarApears(req.session.currentUser)});
+    res.render("profile", { user });
    })
   .catch((err) => {
   console.log(err);
@@ -55,7 +55,7 @@ router.get("/profile/:id", /*isLogged,*/ (req, res, next) => {
 
 //EDITAR PERFIL
 router.post("/profile/:id/update", /*isLogged,*/ (req, res, next) => {
-  res.render("profile", {...navbarApears(req.session.currentUser)});
+  res.render("profile");
 });
 
 /////////////////
@@ -87,12 +87,12 @@ router.post("/profile/:id/update", /*isLogged,*/ (req, res, next) => {
   
 
 router.post("/profile/:id/delete", /*isLogged,*/ (req, res, next) => {
-  res.render("profile" , {...navbarApears(req.session.currentUser)});
+  res.render("profile");
 });
 
 //HOME PAGE
 router.get("/", isLoggedIn, (req, res, next) => {
-  res.render('profile', {...navbarApears(req.session.currentUser)})
+  res.render('user/profile')
 });
 
 // //LOGGIN PAGE
@@ -122,14 +122,14 @@ router.get("/", isLoggedIn, (req, res, next) => {
 
  //CHAT PAGE
 router.get("/chat/:id", /*isLogged,*/ (req, res, next) => {
-  res.render("chat" , {...navbarApears(req.session.currentUser)});
+  res.render("chat");
 });
 //ADMIN PAGE: Update & Delete
 router.get("/profile/:id",/* isAdmin,*/ (req, res, next) => {
-  res.render("profile" , {...navbarApears(req.session.currentUser)});
+  res.render("profile");
 });
 router.post("/profile/:id",/* isAdmin,*/ (req, res, next) => {
-  res.render("profile" , {...navbarApears(req.session.currentUser)});
+  res.render("profile");
 });
 
 // //CHAT PAGE
@@ -141,14 +141,14 @@ router.post("/profile/:id",/* isAdmin,*/ (req, res, next) => {
 router.get("/admin", (req, res, next) => {
   User.find()
   .then(result => {
-    res.render("admin/admin", {users: result, ...navbarApears(req.session.currentUser)});
+    res.render("admin/admin", {users: result});
     })
   .catch(err => {
       console.log(err)
   });
 });
 router.post("/profile/:id", isAdmin, (req, res, next) => {
-  res.render("profile" , {...navbarApears(req.session.currentUser)});
+  res.render("profile");
 });
 
 

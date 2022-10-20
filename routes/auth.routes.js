@@ -28,7 +28,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
   console.log(req.body);
 
   // Check that username, email, and password are provided
-  if (username === "" || password === "" 
+  if (username === "" || email === "" || password === "" 
   || edad === "" || gender === "" || phone === "") {
     res.status(400).render("auth/signup", {
       errorMessage:
@@ -65,11 +65,11 @@ router.post("/signup", isLoggedOut, (req, res) => {
     .then((salt) => bcrypt.hash(password, salt))
     .then((hashedPassword) => {
       // Create a user and save it in the database
-    return User.create({ username, password: hashedPassword, edad, gender ,phone });
+    return User.create({ username, email, password: hashedPassword, edad, gender ,phone });
       //return User.create({ username, email, password: hashedPassword, edad, gender ,phone });
     })
     .then((user) => {
-      res.redirect("/match");
+      res.redirect("/auth/login");
     })
     .catch((error) => {
       if (error instanceof mongoose.Error.ValidationError) {
@@ -92,7 +92,7 @@ router.get("/login", isLoggedOut, (req, res) => {
 
 // POST /auth/login
 router.post("/login", isAdmin, isLoggedOut, (req, res, next) => {
-  const { username, password } = req.body;
+  const { username, email, password } = req.body;
 
   // Check that username, email, and password are provided
   if (username === "" /*|| email === "" */ || password === "") {
