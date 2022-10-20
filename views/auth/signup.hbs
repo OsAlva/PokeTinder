@@ -14,6 +14,10 @@
       <input type="password" name="password" placeholder="Your password" value="123456"/>
     </label>
     <br><br>
+    <label> Img: 
+      <input type="text" name="img" placeholder="Your img url" value="https://picsum.photos/200/300"/>
+    </label>
+    <br><br>
     <label> Edad: 
       <input type="number" name="edad" placeholder="Your age" value="99"/>
     </label>
@@ -27,7 +31,7 @@
     </label>
     <br><br>
     <button type="submit">Sign Up: </button>
-
+    <a href="/auth/login">Back to Log In</a>
 
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>

@@ -2,9 +2,9 @@
 <br>
 <h2>{{loged}}</h2>
 <br>
-<div class="containerBgImg" style="background-image: url({{img}});">
     {{#if usersExists}}
     {{#each users}}
+<div class="containerBgImg w-5 h-5" style="background-image: url({{img}});">
     <form action="/match" method="POST">
     {{this}}
     <br>

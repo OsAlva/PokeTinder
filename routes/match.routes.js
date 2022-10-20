@@ -15,11 +15,11 @@ router.get("/", (req, res, next) => {
   User.findOne({ _id: {"$nin": arrayIds}})
   // {_id: {$ne: req.session.currentUser._id}}
   .then(result => {
-    console.log('RESULT -------' , result)
-    console.log('CUREENTUSER -------' , req.session.currentUser)
+    // console.log('RESULT -------' , result)
+    // console.log('CUREENTUSER -------' , req.session.currentUser)
     const data = {users: [result]};
     data.navbarExist = {...navbarApears(req.session.currentUser)};
-    console.log('DATA --------------',data)
+    // console.log('DATA --------------',data)
     if(result) data.usersExists = true;
     res.render('match/match', data);
   })
@@ -31,7 +31,7 @@ router.post("/", /*isLogged,*/ (req, res, next) => {
     if(req.body.yes){ 
      
 
-      console.log('aaaaa-------', req.session.currentUser.likes)
+      // console.log('aaaaa-------', req.session.currentUser.likes)
       
     
 
@@ -52,7 +52,7 @@ router.post("/", /*isLogged,*/ (req, res, next) => {
       let userExists = false;
        
       req.session.currentUser.likes.forEach(element => {
-        console.log('ELEMENT --------> ', typeof element)
+        // console.log('ELEMENT --------> ', typeof element)
         if(id.equals(element)){
           userExists = true;
         }
@@ -77,7 +77,7 @@ router.post("/", /*isLogged,*/ (req, res, next) => {
       let userExists = false;
        
       req.session.currentUser.dislikes.forEach(element => {
-        console.log('ELEMENT --------> ', typeof element)
+        // console.log('ELEMENT --------> ', typeof element)
         if(id.equals(element)){
           userExists = true;
         }

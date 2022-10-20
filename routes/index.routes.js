@@ -5,8 +5,12 @@ const express = require('express');
 const isAdmin = require("../middleware/isAdmin");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const navbarApears = require('../utils/navbar');
+const { get } = require("mongoose");
+const isLoggedOut = require("../middleware/isLoggedOut.js");
 
-
+router.get("/", isLoggedOut, (req, res, next) => {
+  res.redirect('/auth/login');
+})
 
 //PROFILE PAGE --oscar 
 router.get("/profile", isLoggedIn, (req, res, next) => {

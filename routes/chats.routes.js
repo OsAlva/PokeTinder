@@ -5,7 +5,8 @@ const navbarApears = require('../utils/navbar');
 
 
 router.get('/', (req, res, next) => {
-    User.find()
+    const arrayIds = [...req.session.currentUser.matches];
+    User.find({_id: {$in: arrayIds}})
     .then(result => {
     const data = {match: result};
     data.navbarExist = {...navbarApears(req.session.currentUser)};
