@@ -1,0 +1,35 @@
+{{#with user}}
+      <div class="containerBgImg w-5 h-5" style="background-image: url({{img}});">
+        <form action="/profile/edit" method="POST">
+
+        <label> Username: 
+      <input type="text" name="username" value="{{username}}"/>
+    </label>
+    <br><br>
+    <label> Email: 
+      <input type="email" name="email"  value="somemail@mail.com"/>
+    </label>
+    <br><br>
+    <label> Password: 
+      <input type="password" name="password"  value="{{password}}"/>
+    </label>
+    <br><br>
+    <label> Img: 
+      <input type="text" name="img" placeholder="Your img url" value="https://picsum.photos/200/300"/>
+    </label>
+    <br><br>
+    <label> Edad: 
+      <input type="number" name="edad"  value="{{edad}}"/>
+    </label>
+    <br><br>
+    <label> Gender: 
+      <input type="text" name="gender"  value="{{gender}}" />
+    </label>
+    <br><br>
+    <label>Phone Number: 
+      <input type="number" name="phoneMe"  value="{{phoneMe}}"/>
+    </label>
+    <br><br>
+    <button type="submit">Edit</button>
+        </form>
+    {{/with}}

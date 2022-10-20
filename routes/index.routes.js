@@ -14,6 +14,7 @@ router.get("/", isLoggedOut, (req, res, next) => {
 
 //PROFILE PAGE --oscar 
 router.get("/profile", isLoggedIn, (req, res, next) => {
+  console.log('whats is this user---------', req.session.currentUser)
   User.findOne(req.session.currentUser)
   .then(result => {
     const data = {user: result};
@@ -25,6 +26,34 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
   }) 
 });
 
+router.post("/profile", isLoggedIn, (req, res, next) => {
+  res.redirect('/profile/edit');
+})
+
+router.get('/profile/edit', isLoggedIn, (req, res, next) => {
+  const data = {user: req.session.currentUser}
+  data.navbarExist = {...navbarApears(req.session.currentUser)};
+  res.render('user/profile-edit', data);
+})
+
+router.post('/profile/edit', isLoggedIn, (req, res, next) => {
+  User.findByIdAndUpdate(req.session.currentUser._id, 
+    {username: req.body.username,
+      password: req.body.password,
+      edad: req.body.edad,
+      gender: req.body.gender,
+      phoneMe: req.body.phoneMe
+    }, 
+    {new: true})
+  .then(result => {
+ 
+    req.session.currentUser = result;
+    res.redirect('/profile');
+  })
+  .catch(err => {
+    next(err)
+  })
+})
 
 //EDITAR PERFIL
 
