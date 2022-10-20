@@ -25,7 +25,7 @@ router.get("/signup", isLoggedOut, (req, res) => {
 router.post("/signup", isLoggedOut, (req, res) => {
   
   const { username,email,password, img, edad,gender,phone} = req.body;
-  console.log('hjasdgfkjashdgfjkhas',req.body);
+  // console.log(req.body);
 
   // Check that username, email, and password are provided
   if (username === "" || email === "" || password === "" 

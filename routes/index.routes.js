@@ -50,7 +50,7 @@ router.get("/profile", isLoggedIn, (req, res, next) => {
 
 // //ADMIN PAGE: Update & Delete
 router.get("/admin", (req, res, next) => {
-  User.find()
+  User.find({ _id: {"$ne": req.session.currentUser}})
   .then(result => {
     res.render("admin/admin", {users: result});
     })
@@ -58,6 +58,17 @@ router.get("/admin", (req, res, next) => {
       console.log(err)
   });
 });
+
+router.post("/admin", (req, res, next) => {
+  User.findByIdAndDelete(req.body.userDelete)
+  .then(result => {
+    res.redirect('/admin');
+  })
+  .catch(err => {
+    next(err)
+  })
+
+} )
 
 
 
