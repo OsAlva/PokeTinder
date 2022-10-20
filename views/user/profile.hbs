@@ -1,4 +1,20 @@
-{{!-- <h1>USER PROFILE</h1>
+
+<h1>MY PROFILE</h1>
+{{!-- {{user}} --}}
+<br>
+    {{#with user}}
+        <h2>Username: {{username}}</h2>
+        {{!-- <h3>Email: {{email}}</h3> --}}
+        <h3>Edad: {{edad}}</h3>
+        <h3>Genero: {{gender}}</h3>
+        {{!-- <h2>{{title}}</h2>
+        <p>{{year}}</p>
+        <p>{{director}}</p>
+        <p>{{duration}}</p>
+        <p>{{genre}}</p>
+        <p>{{rate}}</p> --}}
+    {{/with}}
+{{!-- 
 <a href="/chats/create">Create a User</a>
 <br>
 
