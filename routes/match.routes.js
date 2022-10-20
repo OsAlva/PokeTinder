@@ -69,13 +69,13 @@ router.post("/", /*isLogged,*/ (req, res, next) => {
               // console.log('ELEMENT --------> ', typeof element)
               if(myObjectId.equals(element)){
 
-                const updateMyMatches = User.findByIdAndUpdate(req.session.currentUser._id, { "$push": { "matches": idLike } })
+                const updateMyMatches = User.findByIdAndUpdate(req.session.currentUser._id, { "$push": { "matches": idLike } }, {new: true})
                 .then()
                 .catch(err => {
                   console.log(err)
                 })
 
-                const updateTheirMatches = User.findByIdAndUpdate(req.body.yes, { "$push": { "matches": myObjectId } })
+                const updateTheirMatches = User.findByIdAndUpdate(req.body.yes, { "$push": { "matches": myObjectId } }, {new: true})
                 .then()
                 .catch(err => {
                   console.log(err)

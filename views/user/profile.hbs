@@ -1,5 +1,11 @@
 
 <h1>MY PROFILE</h1>
+<br>
+<form action="/profile" method="POST">
+        <input type="hidden" name="edit" value="{{_id}}">
+        <button type="submit">EDIT</button>
+</form>
+
 {{!-- {{user}} --}}
 <br>
     {{#with user}}

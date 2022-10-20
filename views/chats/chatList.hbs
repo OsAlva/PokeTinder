@@ -18,8 +18,9 @@
 
         <button class="btn btn-outline-success updateBtn" type="submit">Update</button>
       </form>
-      <form class="d-flex" role="search" action="/chats/{{this._id}}/delete" method="POST">
-        <button class="btn btn-outline-danger deleteBtn" type="submit">Delete</button>
+      <form class="d-flex" role="search" action="/chats/delete" method="POST">
+        <input type="hidden" name="delete" value="{{_id}}">
+        <button class="btn btn-outline-success" type="submit">delete {{_id}}</button>
       </form>
     </div>
   </div>
