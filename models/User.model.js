@@ -9,7 +9,7 @@ const userSchema = new Schema(
     gender: {type: String, enum: ['male', 'female', 'others']},
     img:{data: Buffer, contentType: String},
     isAdmin: {type: Boolean, default: false},
-    matches: [ {enum: ['yes', 'no']}, {type: Schema.Types.ObjectId} ],
+    matches: [ {enum: ['yes', 'no']}, {type: Schema.Types.ObjectId}, {note: String}],
     phoneMe: {type: Number}
     // location: GOOGLEMAPS API
   }

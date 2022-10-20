@@ -6,85 +6,45 @@ const isAdmin = require("../middleware/isAdmin");
 const isLoggedIn = require("../middleware/isLoggedIn");
 const isLoggedOut = require("../middleware/isLoggedOut");
 
-
-//HOME PAGE
-// router.get("/", /*notLogged,*/ (req, res, next) => {
-//   res.render("index");
-// });
-
-//LOGGIN PAGE
-// router.get("/loggin",/* notLogged,*/ (req, res, next) => {
-//   res.render("loggin");
-// });
-// router.post("/loggin", /*notLogged,*/ (req, res, next) => {
-//   res.render("profile");
-// });
-
-
 //PROFILE PAGE --oscar 
-router.get("/profile/:id", /*isLogged,*/ (req, res, next) => {
-  console.log(req.session.id);
-  User.findById(req.session.id)
-  .then((user) => {
-    res.render("profile", { user });
-   })
-  .catch((err) => {
-  console.log(err);
-  next(err);
-  });
+router.get("/profile/:idUser", isLoggedIn, (req, res, next) => {
+  const idUser = req.params.idUser;
+  //const myIdd = req.session.currentUser._id;
+  console.log(idUser);
+  //const myId = req.session.currentUser;
+  // console.log("cogemos el id del usuario",id);
+   User.findById(idUser)
+   .then(result => {
+     res.render('user/profile.hbs', {user: result})
+  })
+   .catch(err => {
+    console.log(err);
+    next(err)
+   }) 
 });
 
-// //Borrar luego para agregar usuarios
-// router.get("/newUser", (req, res, next) => {
-//   res.render("newUser");
-// });
+router.post("/profile/:idUser", isLoggedIn, (req, res, next) => {
+  const idUser = req.params.idUser;
+  const {username, email, password} = req.body;
+  User.findByIdAndUpdate(idUser, {username, email, password})
+  .then(result => {
+    res.redirect('/profile/:idUser');
+  })
+  .catch(err => {
+    console.log(err);
+    next(err);
+  })
+}); 
 
-// router.post("/newUser", (req, res, next) => {
-//   User.create(req.body)
-//   .then((user) => {
-//     console.log("user", user);
-//     const data = {
-//       createOk: true,
-//       user: result
-//     }
-//     res.render("newUser", data);
-//   })
-//   .catch((err) => {
-//   console.log(err);
-//   next(err);
-//   });
-// });
+// router.post("/profile", isLoggedIn, (req, res, next) => {
+//   const {idUsers} = req.body;
 
+
+////////////////7
 //EDITAR PERFIL
 router.post("/profile/:id/update", /*isLogged,*/ (req, res, next) => {
   res.render("profile");
 });
-
-/////////////////
-
-
-// router.get("/newFilm", (req, res, next)=>{
-//   res.render("newFilm");
-// })
-
-// router.post("/newFilm", (req, res, next)=>{
-//   Movie.create(req.body)
-//   .then(result => {
-//       console.log("result: ", result);
-//       const data = {
-//           createOk: true,
-//           movie: result
-//       }
-//       res.render("newFilm", data);
-//   })
-//   .catch(err => {
-//       console.log("error: ", err);
-//       const data = {
-//           createKo: true
-//       }
-//       res.render("newFilm", data);
-//   })
-// })
 /////////////////
   
 
@@ -94,16 +54,8 @@ router.post("/profile/:id/delete", /*isLogged,*/ (req, res, next) => {
 
 //HOME PAGE
 router.get("/", isLoggedIn, (req, res, next) => {
-  res.render('profile')
+  res.render('login');
 });
-
-// //LOGGIN PAGE
-// router.get("/loggin", notLogged, (req, res, next) => {
-//   res.render("loggin");
-// });
-// router.post("/loggin", notLogged, (req, res, next) => {
-//   res.render("profile");
-// });
 
 // //PROFILE PAGE
 // router.get("/profile/:id", isLogged, (req, res, next) => {
@@ -146,8 +98,6 @@ router.get("/admin", isAdmin, (req, res, next) => {
 router.post("/profile/:id", isAdmin, (req, res, next) => {
   res.render("profile");
 });
-
-
 
 
 module.exports = router;

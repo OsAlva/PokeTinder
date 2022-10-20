@@ -6,13 +6,13 @@ const User = require('../models/User.model');
 router.get("/", /*isLogged,*/ (req, res, next) => {
     User.find()
     .then(result => {
-      const usersArr = result.map(element => { if(!req.session.matches[1].find(element.id)) element });
-      res.render('match', usersArr[0])
+      //const usersArr = result.map(element => { if(!req.session.matches[1].find(element.id)) element });
+      res.render('match', /*usersArr[0]*/)
     })
     .catch(err => next(err))
   });
 router.post("/", /*isLogged,*/ (req, res, next) => {
-    const otherUser = req.body
+    const {otherUser }= req.body
     const {id} = req.session.id
     User.findById(id)
     .then(result => {
