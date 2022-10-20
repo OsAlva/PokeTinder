@@ -1,24 +1,22 @@
-<h1>Match Page</h1>
-<br>
-<h2>{{loged}}</h2>
-<br>
+<div class="containerProfile">
     {{#if usersExists}}
     {{#each users}}
-<div class="containerBgImg w-5 h-5" style="background-image: url({{img}});">
+    <div class="card-title"><span>{{username}}, </span><span>{{edad}}</span></div>
+<div class="card containerBgImg" style="background-image: url({{img}})">
+  <div class="card-body cardBtn">
     <form action="/match" method="POST">
-    {{!-- {{this}} --}}
-    <h3>{{username}}</h3>
-    <br>
         <input type="hidden" name="yes" value="{{_id}}">
-        {{!-- <input type="hidden" name="userId" value={{_id}}> --}}
-        <button type="submit">YES</button>
+        <button class="btn btn-success border border-2" type="submit">YES</button>
     </form>
     <form action="/match" method="POST">
         <input type="hidden" name="no" value="{{_id}}">
-        <button type="submit">NO</button>
+        <button class="btn btn-danger border border-2" type="submit">NO</button>
     </form>
+  </div>
+</div>
     {{/each}}
     {{else}}
-    <h1>Theres no users left</h1>
+<h2 class="errorMsg">Theres no users left</h2>
     {{/if }}
 </div>
+

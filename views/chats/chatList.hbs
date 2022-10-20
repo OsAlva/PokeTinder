@@ -1,46 +1,25 @@
-<h1>Chat List</h1>
+<h2 class="encabezamientos">Chat List</h2>
 <a href="/chats/create">Create a User</a>
-<br>
-
+<br><br>
 {{#each match}}
-    {{this}}
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg bg-info border border-3 m-3">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">{{this.username}}</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+     
+    <div class="card containerBgImgProfile mt-2 mb-2" style="background-image: url({{img}})">
+    </div>
+    <div class="card bg-info border border-primary border-3 m-3 p-2 borderCont">
+      <h5 class="usersTitleProfile">{{this.username}}</h5>
+      <a class="nav-link text-white p-3" href="https://web.whatsapp.com/{{this.phoneMe}}">Would you like to talk?</a>
+    </div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">{{this.edad}}</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-success" href="https://web.whatsapp.com/">Phone Me: {{this.phoneMe}}</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Salute
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Say Hi!</a></li>
-            <li><a class="dropdown-item" href="#">Send Love!</a></li>
-            {{!-- <li><hr class="dropdown-divider"></li> --}}
-            <li><a class="dropdown-item" href="#">What's yout plan?</a></li>
-          </ul>
-        </li>
-        {{!-- <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
-        </li> --}}
-      </ul>
       <form class="d-flex" role="search" action="/chats/{{this._id}}" method="POST">
         {{!-- <input class="form-control me-2" type="text" placeholder="Add note" aria-label="Search" > --}}
-            <input class="form-control me-2" type="text" aria-describedby="emailHelp" name="username" value="{{this.username}}">
+            <input class="form-control me-2 p-1" type="text" aria-describedby="emailHelp" placeholder="About {{this.username}}">
 
-        <button class="btn btn-outline-success" type="submit">Update {{this._id}}</button>
+        <button class="btn btn-outline-success updateBtn" type="submit">Update</button>
       </form>
       <form class="d-flex" role="search" action="/chats/{{this._id}}/delete" method="POST">
-        <button class="btn btn-outline-success" type="submit">delete {{this._id}}</button>
+        <button class="btn btn-outline-danger deleteBtn" type="submit">Delete</button>
       </form>
     </div>
   </div>

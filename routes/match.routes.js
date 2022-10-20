@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require('../models/User.model');
 const ObjectId = require('mongodb').ObjectId;
 const navbarApears = require('../utils/navbar');
+const alert = require('alert');
 
 // //MATCH PAGE
 router.get("/", (req, res, next) => {
@@ -81,18 +82,14 @@ router.post("/", /*isLogged,*/ (req, res, next) => {
                 })
 
                 Promise.all([updateMyMatches, updateTheirMatches])
-                .then(result => {
-                    console.log('PROMISES ALL COMPLETE=====' )
+                .then(() => {
+                    alert('Tienes un match!')
                 })
                 .catch(err => {
                   console.log(err)
                 })
-
-
               } 
             })
-      
-        
           })
           .catch(err => {
             console.log(err)
