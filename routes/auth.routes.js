@@ -4,6 +4,7 @@ const router = express.Router();
 // ℹ️ Handles password encryption
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
+const fileUploader = require("../config/cloudinary.config");
 
 // How many rounds should bcrypt run the salt (default - 10 rounds)
 const saltRounds = 10;

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const fileUploader = require('../config/cloudinary.config');
 const User = require('../models/User.model');
+//const Photo = require('../models/Photo.model');
 
 //GET ruta para mostrar el form para crear una nueva foto
 router.get('/create', (req, res, next) => {
@@ -10,15 +11,14 @@ router.get('/create', (req, res, next) => {
 
 //POST para add una nueva foto a claudinary
 router.post('/create', fileUploader.single('photo-cover-image'), (req, res) => {
-    const algo = req.body;
-    console.log("REQ.BODY", algo);
+  const {  } = req.body;
+ // User.updateOne({ _id: req.session.currentUser._id }, { $set: { photo: req.file.path } })
 
-   
-    Photo.create({ title, description, imageUrl: req.file.path })
+    User.create({ img: req.file.path })
       .then(newlyCreatedMovieFromDB => {
         console.log(newlyCreatedMovieFromDB);
       })
-      .catch(error => console.log(`Error while creating a new movie: ${error}`));
+      .catch(error => console.log(`Error while creating a new photo: ${error}`));
   });
 
 
