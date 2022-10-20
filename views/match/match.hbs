@@ -3,7 +3,7 @@
 <h2>{{loged}}</h2>
 <br>
 <div class="containerBgImg" style="background-image: url({{img}});">
-    {{#if users}}
+    {{#if usersExists}}
     {{#each users}}
     <form action="/match" method="POST">
     {{this}}
@@ -17,5 +17,7 @@
         <button type="submit">NO</button>
     </form>
     {{/each}}
+    {{else}}
+    <h1>Theres no users left</h1>
     {{/if }}
 </div>

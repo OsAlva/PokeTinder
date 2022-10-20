@@ -2,13 +2,26 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User.model');
 const ObjectId = require('mongodb').ObjectId;
+const navbarApears = require('../utils/navbar');
 
 // //MATCH PAGE
-router.get("/", /*isLogged,*/ (req, res, next) => {
-  User.find()
+router.get("/", (req, res, next) => {
+  // crear array que contingui els continguts dels arraya de likes, dislikes, matches
+  // spread operator
+
+  
+  const arrayIds = [...req.session.currentUser.likes, ...req.session.currentUser.dislikes, ...req.session.currentUser.matches];
+  
+  User.findOne({ _id: {"$nin": arrayIds}})
   // {_id: {$ne: req.session.currentUser._id}}
   .then(result => {
-    res.render('match/match', {users: result});
+    console.log('RESULT -------' , result)
+    console.log('CUREENTUSER -------' , req.session.currentUser)
+    const data = {users: [result]};
+    data.navbarExist = {...navbarApears(req.session.currentUser)};
+    console.log('DATA --------------',data)
+    if(result) data.usersExists = true;
+    res.render('match/match', data);
   })
   .catch(err => {
     console.log(err)
@@ -26,7 +39,7 @@ router.post("/", /*isLogged,*/ (req, res, next) => {
       // if(req.session.currentUser.likes.includes(req.body.yes)){
       //   return res.redirect('/match')
       // }
-      
+
       // const strLikes = JSON.stringify(req.session.currentUser.likes);
       // // console.log(strLikes, typeof strLikes)
       // const strId = JSON.stringify(req.body.yes);

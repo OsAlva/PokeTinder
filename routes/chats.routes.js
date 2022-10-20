@@ -1,11 +1,15 @@
 const express = require("express");
 const User = require("../models/User.model");
 const router = express.Router();
+const navbarApears = require('../utils/navbar');
+
 
 router.get('/', (req, res, next) => {
     User.find()
     .then(result => {
-        res.render('chats/chatList', {match: result});    })
+    const data = {match: result};
+    data.navbarExist = {...navbarApears(req.session.currentUser)};
+        res.render('chats/chatList', data);    })
     .catch(err => {
         console.log(err)
     });
