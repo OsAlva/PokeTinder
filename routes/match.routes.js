@@ -8,36 +8,24 @@ router.get("/", /*isLogged,*/ (req, res, next) => {
   User.find()
   // {_id: {$ne: req.session.currentUser._id}}
   .then(result => {
-    res.render('match/match', {users: result});
+    const resultat = result.map(e => {
+      if(e.likes.includes(e._id) || e.dislikes.includes(e._id) || e.matches.includes(e._id)){
+      
+      }})
+      res.render('match/match', {users: result});
   })
   .catch(err => {
     console.log(err)
   })
   });
 router.post("/", /*isLogged,*/ (req, res, next) => {
-    if(req.body.yes){ 
-     
+    if(req.body.yes){
 
       console.log('aaaaa-------', req.session.currentUser.likes)
-      
-    
-
-      // console.log(typeof req.body.yes)
-      // if(req.session.currentUser.likes.includes(req.body.yes)){
-      //   return res.redirect('/match')
-      // }
-      
-      // const strLikes = JSON.stringify(req.session.currentUser.likes);
-      // // console.log(strLikes, typeof strLikes)
-      // const strId = JSON.stringify(req.body.yes);
-
-      // if(strLikes.includes(strId)){
-      //   return res.redirect('/match')
-      // }
 
       const id = ObjectId(req.body.yes);
       let userExists = false;
-       
+      
       req.session.currentUser.likes.forEach(element => {
         console.log('ELEMENT --------> ', typeof element)
         if(id.equals(element)){
