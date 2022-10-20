@@ -10,7 +10,7 @@ router.get("/", (req, res, next) => {
   // spread operator
 
   
-  const arrayIds = [...req.session.currentUser.likes, ...req.session.currentUser.dislikes, ...req.session.currentUser.matches];
+  const arrayIds = [...req.session.currentUser.likes, ...req.session.currentUser.dislikes, ...req.session.currentUser.matches, req.session.currentUser];
   
   User.findOne({ _id: {"$nin": arrayIds}})
   // {_id: {$ne: req.session.currentUser._id}}
@@ -27,33 +27,18 @@ router.get("/", (req, res, next) => {
     console.log(err)
   })
   });
+
 router.post("/", /*isLogged,*/ (req, res, next) => {
+
     if(req.body.yes){ 
-     
 
-      // console.log('aaaaa-------', req.session.currentUser.likes)
+      const idLike = ObjectId(req.body.yes);
       
-    
-
-      // console.log(typeof req.body.yes)
-      // if(req.session.currentUser.likes.includes(req.body.yes)){
-      //   return res.redirect('/match')
-      // }
-
-      // const strLikes = JSON.stringify(req.session.currentUser.likes);
-      // // console.log(strLikes, typeof strLikes)
-      // const strId = JSON.stringify(req.body.yes);
-
-      // if(strLikes.includes(strId)){
-      //   return res.redirect('/match')
-      // }
-
-      const id = ObjectId(req.body.yes);
+      //check if userexists in current likes array
       let userExists = false;
-       
       req.session.currentUser.likes.forEach(element => {
         // console.log('ELEMENT --------> ', typeof element)
-        if(id.equals(element)){
+        if(idLike.equals(element)){
           userExists = true;
         }
       })
@@ -62,8 +47,57 @@ router.post("/", /*isLogged,*/ (req, res, next) => {
         return res.redirect('/match');
       }
      
+      // if the other user is not in current likes array, updatear currentuser likes array
+
         User.findByIdAndUpdate(req.session.currentUser._id, { "$push": { "likes": req.body.yes } }, {new: true})
         .then(result => {
+          // console.log('LIKES------------', typeof req.session.currentUser._id)
+          //find likes in match user likes array
+
+          User.findById(req.body.yes)
+
+          .then(userLike => {
+
+            const myObjectId = ObjectId(req.session.currentUser._id);
+
+            // console.log('USERLIKE ==========', userLike)
+
+            // let likeExists = false;
+       
+            userLike.likes.forEach(element => {
+              // console.log('ELEMENT --------> ', typeof element)
+              if(myObjectId.equals(element)){
+
+                const updateMyMatches = User.findByIdAndUpdate(req.session.currentUser._id, { "$push": { "matches": idLike } })
+                .then()
+                .catch(err => {
+                  console.log(err)
+                })
+
+                const updateTheirMatches = User.findByIdAndUpdate(req.body.yes, { "$push": { "matches": myObjectId } })
+                .then()
+                .catch(err => {
+                  console.log(err)
+                })
+
+                Promise.all([updateMyMatches, updateTheirMatches])
+                .then(result => {
+                    console.log('PROMISES ALL COMPLETE=====' )
+                })
+                .catch(err => {
+                  console.log(err)
+                })
+
+
+              } 
+            })
+      
+        
+          })
+          .catch(err => {
+            console.log(err)
+          })
+
           req.session.currentUser = result;
           res.redirect('/match')
         })
