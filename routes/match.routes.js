@@ -10,7 +10,6 @@ router.get("/", /*isLogged,*/ (req, res, next) => {
   .then(result => {
     const resultat = result.map(e => {
       if(e.likes.includes(e._id) || e.dislikes.includes(e._id) || e.matches.includes(e._id)){
-      
       }})
       res.render('match/match', {users: result});
   })
