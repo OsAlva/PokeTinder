@@ -1,21 +1,48 @@
 {{!-- TODO --}}
-<div id="registerForm" class="registerForm mt-5">
+<div class="registerForm mt-5">
   
   <form action="/auth/login" method="POST">
   
   <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label text-white">Username</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="username" placeholder="Your username" aria-describedby="emailHelp">
+    <label for="thisUsername" class="form-label text-white fw-bold m-1 mb-2">Username</label>
+    <input type="text" class="form-control" id="thisUsername" name="username" placeholder="Your username">
+  </div>
+
+  <div class="mb-3">
+    <label for="thisEmail" class="form-label text-white fw-bold m-1 mb-2">Email</label>
+    <input type="email" class="form-control" id="thisEmail" name="email" placeholder="Your email" value="somemail@mail.com">
   </div>
   
   <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label text-white">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Your password" value="123456">
+    <label for="thisPassword" class="form-label text-white fw-bold m-1 mb-2">Password</label>
+    <input type="password" class="form-control" id="thisPassword" name="password" placeholder="Your password" value="123456">
   </div>
   
-  <div class="divlogBtn ">
-    <button type="submit" class="btn btn-primary m-3 p-4">Log In</button>
-    <p class="m-3"><a href="/auth/signup">Sign Up</a></p>
+  <div class="mb-3">
+    <label for="thisPhoto" class="form-label text-white fw-bold m-1 mb-2">Photo</label>
+    <input type="text" class="form-control" id="thisPhoto" name="img" placeholder="Your img url" value="https://picsum.photos/200/300">
+  </div>
+
+  <div class="mb-3">
+    <label for="thisAge" class="form-label text-white fw-bold m-1 mb-2">Age</label>
+    <input type="number" class="form-control" id="thisAge" name="edad" placeholder="Your age" value="25">
+  </div>
+
+  <div class="mb-3">
+    <label for="thisGender" class="form-label text-white fw-bold m-1 mb-2">Gender</label>
+    <input type="text" class="form-control" id="thisGender" name="gender" placeholder="Your gender" value="others">
+  </div>
+  
+  <div class="mb-3">
+    <label for="thisPhone" class="form-label text-white fw-bold m-1 mb-2">Phone Number</label>
+    <input type="number" class="form-control" id="thisPhone" name="phone" placeholder="Your phone" value="687279990">
+  </div>
+
+  <hr><hr>
+
+  <div class="divsignBtn">
+    <button type="submit" class="btn btn-primary">Sign Up</button>
+    <a href="/auth/signup">Back to Log In</a>
   </div>
   
   {{#if errorMessage}}
@@ -23,46 +50,3 @@
   {{/if}}
 
 </form>
-</div>
-
-
-<div id="form">
-  <h2>Sign Up</h2>
-  <br>
-  <form action="/auth/signup" method="POST">
-    <label> Username: 
-      <input type="text" name="username" placeholder="Your username" />
-    </label>
-    <br><br>
-    <label> Email: 
-      <input type="email" name="email" placeholder="Your email" value="somemail@mail.com"/>
-    </label>
-    <br><br>
-    <label> Password: 
-      <input type="password" name="password" placeholder="Your password" value="123456"/>
-    </label>
-    <br><br>
-    <label> Img: 
-      <input type="text" name="img" placeholder="Your img url" value="https://picsum.photos/200/300"/>
-    </label>
-    <br><br>
-    <label> Edad: 
-      <input type="number" name="edad" placeholder="Your age" value="99"/>
-    </label>
-    <br><br>
-    <label> Gender: 
-      <input type="text" name="gender" placeholder="Your gender" value="others" />
-    </label>
-    <br><br>
-    <label>Phone Number: 
-      <input type="number" name="phone" placeholder="Your phone" value="687279990"/>
-    </label>
-    <br><br>
-    <button type="submit">Sign Up: </button>
-    <a href="/auth/login">Back to Log In</a>
-
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
-  </form>
-</div>

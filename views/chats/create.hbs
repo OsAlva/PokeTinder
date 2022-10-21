@@ -1,20 +1,50 @@
-<h1>Create User</h1>
-<a href="/chats">Chat List</a>
-<br>
+<h5 class="usersTitleProfile">Create User</h5>
 
 <form action="/chats/create" method="POST">
-    <input type="text" placeholder="username" name="username">
-    <input type="password" placeholder="password" name="password">
-    <input type="number" placeholder="edad" name="edad">
-    <input type="text" placeholder="gender" name="gender">
-    {{!-- <input type="text" placeholder="matches" name="matches"> --}}
-    {{!-- <input type="text" placeholder="matches" name="matches"> --}}
+<div class="mb-3">
+    <label for="thisUsername" class="form-label text-white fw-bold m-1 mb-2">Username</label>
+    <input type="text" class="form-control" id="thisUsername" name="username" placeholder="user1" value="user1">
+  </div>
 
-    {{!-- <label for="gender">Choose gender:</label>
-<select name="gender" id="gender" multiple>
-    {{#each dbCelebs}}
-  <option value="{{this._id}}">{{this.name}}</option>
-    {{/each}}
-</select> --}}
-    <button type="submit">Submit</button>
-    </form>
+  <div class="mb-3">
+    <label for="thisEmail" class="form-label text-white fw-bold m-1 mb-2">Email</label>
+    <input type="email" class="form-control" id="thisEmail" name="email" placeholder="Your email" value="somemail@mail.com">
+  </div>
+  
+  <div class="mb-3">
+    <label for="thisPassword" class="form-label text-white fw-bold m-1 mb-2">Password</label>
+    <input type="password" class="form-control" id="thisPassword" name="password" placeholder="Your password" value="123456">
+  </div>
+  
+  <div class="mb-3">
+    <label for="thisPhoto" class="form-label text-white fw-bold m-1 mb-2">Photo</label>
+    <input type="text" class="form-control" id="thisPhoto" name="img" placeholder="Your img url" value="https://picsum.photos/200/300">
+  </div>
+
+  <div class="mb-3">
+    <label for="thisAge" class="form-label text-white fw-bold m-1 mb-2">Age</label>
+    <input type="number" class="form-control" id="thisAge" name="edad" placeholder="Your age" value="25">
+  </div>
+
+  <div class="mb-3">
+    <label for="thisGender" class="form-label text-white fw-bold m-1 mb-2">Gender</label>
+    <input type="text" class="form-control" id="thisGender" name="gender" placeholder="Your gender" value="others">
+  </div>
+  
+  <div class="mb-3">
+    <label for="thisPhone" class="form-label text-white fw-bold m-1 mb-2">Phone Number</label>
+    <input type="number" class="form-control" id="thisPhone" name="phone" placeholder="Your phone" value="687279990">
+  </div>
+
+  <hr><hr>
+
+  <div class="divsignBtn">
+    <button type="submit" class="btn btn-primary">Create User</button>
+    <a href="/admin">Admin</a>
+  </div>
+  
+  {{#if errorMessage}}
+      <p class="errorMsg">{{errorMessage}}</p>
+  {{/if}}
+
+</form>

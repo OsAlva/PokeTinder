@@ -1,29 +1,31 @@
 <h2 class="encabezamientos">Chat List</h2>
 <a href="/chats/create">Create a User</a>
 <br><br>
-{{#each match}}
-    <nav class="navbar navbar-expand-lg bg-info border border-3 m-3">
+<div class="container d-flex justify-content-center flex-wrap">
+  {{#each match}}
+    <nav class="navbar navbar-expand-lg bg-info border border-3 m-3 miNavbar">
   <div class="container-fluid">
      
     <div class="card containerBgImgProfile mt-2 mb-2" style="background-image: url({{img}})">
     </div>
-    <div class="card bg-info border border-primary border-3 m-3 p-2 borderCont">
-      <h5 class="usersTitleProfile">{{this.username}}</h5>
-      <a class="nav-link text-white p-3" href="https://web.whatsapp.com/{{this.phoneMe}}">Would you like to talk?</a>
-    </div>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <form class="d-flex" role="search" action="/chats/{{this._id}}" method="POST">
-        {{!-- <input class="form-control me-2" type="text" placeholder="Add note" aria-label="Search" > --}}
-            <input class="form-control me-2 p-1" type="text" aria-describedby="emailHelp" placeholder="About {{this.username}}">
-
-        <button class="btn btn-outline-success updateBtn" type="submit">Update</button>
-      </form>
-      <form class="d-flex" role="search" action="/chats/delete" method="POST">
-        <input type="hidden" name="delete" value="{{_id}}">
-        <button class="btn btn-outline-success" type="submit">delete {{_id}}</button>
-      </form>
+    <div class="card bg-info border border-primary border-3 m-1 p-1 borderCont">
+      <h5 class="usersTitleProfile">{{this.username}}, {{this.edad}}</h5>
+      <a class="nav-link text-white p-3 rounded-4 opacity-75" href="https://web.whatsapp.com/{{this.phoneMe}}">Would you like to talk?</a>
+      <div class="d-flex flex-column align-items-end mt-3">
+        <form class="d-flex" role="search" action="/chats/{{this._id}}" method="POST">
+          <input class="border border-primary border-2 rounded-4 me-2 p-1 " type="textarea" placeholder="About {{this.username}}">
+          <button class="btn btn-outline-success rounded-pill updateBtn" type="submit">Update</button>
+        </form>
+        <hr>
+        <hr>
+        <form class="d-flex" role="search" action="/chats/delete" method="POST">
+          <input type="hidden" name="delete" value="{{_id}}">
+          <button class="btn btn-outline-danger rounded-pill deleteBtn" type="submit">Delete</button>
+        </form>
+      </div>
     </div>
   </div>
 </nav>
     <br>
 {{/each}}
+</div>

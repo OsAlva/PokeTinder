@@ -3,7 +3,8 @@ const User = require("../models/User.model");
 const router = express.Router();
 const ObjectId = require('mongodb').ObjectId;
 const navbarApears = require('../utils/navbar');
-
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 router.get('/', (req, res, next) => {
     const arrayIds = [...req.session.currentUser.matches];
@@ -22,19 +23,48 @@ router.get('/create', (req, res, next) => {
    // res.render('auth/signup');
 })
 
-// router.post('/:idUser', (req, res, next) => {
-//     console.log('PARAMS ---> ', req.params.idUser)
-//     console.log('BODY ---> ', req.body)
-//     User.findByIdAndUpdate(req.params.idUser, { username: req.body })
-//     .then(result => {
-//         console.log('WHASTS THIS: ', req.body)
-//         // console.log('WHAT IS THIS: ', result)
-//         res.redirect('chats');
-//     })
-//     .catch(err => {
-//         console.log(err)
-//     })
-// })
+router.post('/:idUser', (req, res, next) => {
+    const { username,email,password, img, edad,gender,phone} = req.body;
+
+  // Check that username, email, and password are provided
+    if (username === "" || email === "" || password === "" 
+        || edad === "" || gender === "" || phone === "") {
+        res.status(400).render("auth/signup", {
+        errorMessage:
+            "All fields are mandatory. Please provide your username, email, age, gender, phone  and password.",
+        });
+        return;
+    }
+
+    if (password.length < 6) {
+        res.status(400).render("auth/signup", {
+        errorMessage: "Your password needs to be at least 6 characters long.",
+        });
+        return;
+    }
+
+// Create a new user - start by hashing the password
+    bcrypt
+        .genSalt(saltRounds)
+        .then((salt) => bcrypt.hash(password, salt))
+        .then((hashedPassword) => {
+// Create a user and save it in the database
+        return User.create({ username, email, password: hashedPassword, img, edad, gender, phone });
+        })
+        .then(() => {res.redirect("/auth/login")})
+        .catch((error) => {
+        if (error instanceof mongoose.Error.ValidationError) {
+            res.status(500).render("auth/signup", { errorMessage: error.message });
+        } else if (error.code === 11000) {
+            res.status(500).render("auth/signup", {
+            errorMessage:
+                "Username and email need to be unique. Provide a valid username or email.",
+            });
+        } else {
+            next(error);
+        }
+        });
+});
 
 router.post("/delete", (req, res, next)=>{
     User.findById(req.session.currentUser._id)

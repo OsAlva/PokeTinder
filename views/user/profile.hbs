@@ -1,31 +1,35 @@
+<h2 class="encabezamientos">MY PROFILE</h2>
 
-<h1>MY PROFILE</h1>
-<br>
-<form action="/profile" method="POST">
-        <input type="hidden" name="edit" value="{{_id}}">
-        <button type="submit">EDIT</button>
-</form>
+{{#with user}}
+<div class="containerFlex">
+  <div class="containerProfileImg" style="background-image: url({{img}});"></div>
+    <div class="registerForm mt-5">
+  
+        <div class="mb-3">
+            <p class="form-label text-white fw-bold fs-1 m-1 mb-2">Username</p>
+            <label class="text-warning fw-bold fs-3 m-1 mb-2 font-monospace">{{username}}</label>
+        </div>
 
-{{!-- {{user}} --}}
-<br>
-    {{#with user}}
-      <div class="containerBgImg w-5 h-5" style="background-image: url({{img}});">
-        <h2>Username: {{username}}</h2>
-        {{!-- <h3>Email: {{email}}</h3> --}}
-        <h3>Edad: {{edad}}</h3>
-        <h3>Genero: {{gender}}</h3>
-        {{!-- <h2>{{title}}</h2>
-        <p>{{year}}</p>
-        <p>{{director}}</p>
-        <p>{{duration}}</p>
-        <p>{{genre}}</p>
-        <p>{{rate}}</p> --}}
-    {{/with}}
-{{!-- 
-<a href="/chats/create">Create a User</a>
-<br>
+        <div class="mb-3">
+            <p class="form-label text-white fw-bold fs-1 m-1 mb-2">Age</p>
+            <label class="text-warning fw-bold fs-3 m-1 mb-2 font-monospace">{{edad}}</label>
+        </div>
 
-{{#each match}}
-    {{this}}
-    <br>
-{{/each}} --}}
+        <div class="mb-3">
+            <p class="form-label text-white fw-bold fs-1 m-1 mb-2">Gender</p>
+            <label class="text-warning fw-bold fs-3 m-1 mb-2 font-monospace">{{gender}}</label>
+        </div>
+
+        <form action="/profile" method="POST">
+            <div class="mb-3">
+                <input type="hidden" name="edit" value="{{_id}}">
+                <button type="submit" class="btn btn-primary">Edit</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+{{/with}}
+
+    

@@ -1,5 +1,5 @@
 body {
-  padding: 20px;
+  padding: 0px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: rgb(0, 0, 108);
 }
@@ -77,6 +77,8 @@ a:hover {
   color: white;
   font-size: 3rem;
   font-weight: bold;
+  margin-left: 6rem;
+  margin-bottom: 2rem;
 }
 
 .updateBtn, .deleteBtn{
@@ -86,22 +88,29 @@ a:hover {
 .containerBgImgProfile{
   background-repeat: no-repeat;
   background-size: cover;
-  height: 320px;
-  width: 200px;
+  height: 300px;
+  width: 400px;
   margin: auto;
   border: 2px solid white;
   border-radius: 15px;
 }
 
-.usersTitleProfile, .errorMsg {
+.usersTitleProfile {
+  font-weight: bold;
+  font-size: 2rem;
+  color: white;
+}
+
+.errorMsg {
+  margin-top: 3rem;
   font-weight: bold;
   font-size: 2rem;
   color: white;
 }
 
 .borderCont{
-  width: 340px;
-  height: 120px;
+  width: 100vw;
+  height: 300px;
   border-radius: 15px;
   align-items: center;
 }
@@ -111,7 +120,36 @@ a:hover {
   font-weight: bold;
 }
 
+.divsignBtn {
+  display: flex;
+  justify-content: space-between;
+}
+
+.divsignBtn button {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
 .loginForm, .registerForm {
   margin: auto;
   width: 50vw;
+}
+
+.containerProfileImg {
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 500px;
+  width: 400px;
+  margin: auto;
+  border: 2px solid white;
+  border-radius: 15px;
+}
+
+.containerFlex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.miNavbar {
+  width: 100vw;
 }
