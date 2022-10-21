@@ -7,15 +7,18 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
 router.get('/', (req, res, next) => {
-    const arrayIds = [...req.session.currentUser.matches];
-    User.find({_id: {$in: arrayIds}})
-    .then(result => {
-    const data = {match: result};
-    data.navbarExist = {...navbarApears(req.session.currentUser)};
-        res.render('chats/chatList', data);    })
-    .catch(err => {
-        console.log(err)
-    });
+    User.findById(req.session.currentUser._id)
+        .then(result => {
+            req.session.currentUser = result;
+            const arrayIds = [...req.session.currentUser.matches];    
+            return User.find({_id: {$in: arrayIds}})
+        })
+        .then(resultado => {
+            const data = {match: resultado};
+            data.navbarExist = {...navbarApears(req.session.currentUser)};
+            res.render('chats/chatList', data);    })
+        .catch((err) => {console.log(err)})
+
 });
 
 router.get('/create', (req, res, next) => {
@@ -23,9 +26,59 @@ router.get('/create', (req, res, next) => {
    // res.render('auth/signup');
 })
 
+router.post("/delete", (req, res, next)=>{
+    User.findById(req.session.currentUser._id)
+    .then(result => {
+        console.log('RESULT BEFORE---------', result)
+
+        // req.session.currentUser = result
+        // console.log('RESULT---------', req.session.currentUser.matches)
+        const deleteObjId = req.body.delete;
+        const matches = req.session.currentUser.matches;
+        const likes = req.session.currentUser.likes;
+        console.log('DELETE ------->' , req.body.delete)
+        matches.forEach((element, k) => {
+            if(deleteObjId === element){
+                result.matches.splice(k, 1);
+            }
+        })
+        likes.forEach((element, k) => {
+            console.log('ELEMENTO----------',element, deleteObjId)
+            if(deleteObjId === element){
+                result.likes.splice(k, 1);
+            }
+        })
+        const updatedUser = result;
+        User.findByIdAndUpdate(req.session.currentUser._id, {matches: updatedUser.matches, likes: updatedUser.likes}, {new: true})
+        .then(result => {
+            console.log('RESULT FINAL--------', result)
+            req.session.currentUser = result;
+            res.redirect("/chats");
+        })
+        .catch(err => {
+            next(err)
+        })
+
+        console.log('RESULT SPLICE---------', updatedUser)
+        // console.log('CURRENT USER ----------', req.session.currentUser)
+        // User.findByIdAndUpdate(req.session.currentUser._id, {"matches": } )
+        // .then(result => {
+
+        // })
+        // .catch(err => {
+        //     console.log(err)
+        // })
+
+
+    })
+    .catch(err => {
+      console.log("err: ", err);
+    })
+  })
+
 router.post('/:idUser', (req, res, next) => {
     const { username,email,password, img, edad,gender,phone} = req.body;
-
+    console.log(req.body)
   // Check that username, email, and password are provided
     if (username === "" || email === "" || password === "" 
         || edad === "" || gender === "" || phone === "") {
@@ -66,54 +119,7 @@ router.post('/:idUser', (req, res, next) => {
         });
 });
 
-router.post("/delete", (req, res, next)=>{
-    User.findById(req.session.currentUser._id)
-    .then(result => {
-        console.log('RESULT BEFORE---------', result)
 
-        // req.session.currentUser = result
-        // console.log('RESULT---------', req.session.currentUser.matches)
-        const deleteObjId = req.body.delete;
-        const matches = req.session.currentUser.matches;
-        const likes = req.session.currentUser.likes;
-        matches.forEach((element, k) => {
-            if(deleteObjId === element){
-                result.matches.splice(k, 1);
-            }
-        })
-        likes.forEach((element, k) => {
-            console.log('ELEMENTO----------',element, deleteObjId)
-            if(deleteObjId === element){
-                result.likes.splice(k, 1);
-            }
-        })
-        const updatedUser = result;
-        User.findByIdAndUpdate(req.session.currentUser._id, {matches: updatedUser.matches, likes: updatedUser.likes}, {new: true})
-        .then(result => {
-            console.log('RESULT FINAL--------', result)
-            req.session.currentUser = result;
-            res.redirect("/chats");
-        })
-        .catch(err => {
-            next(err)
-        })
-
-        console.log('RESULT SPLICE---------', updatedUser)
-        // console.log('CURRENT USER ----------', req.session.currentUser)
-        // User.findByIdAndUpdate(req.session.currentUser._id, {"matches": } )
-        // .then(result => {
-
-        // })
-        // .catch(err => {
-        //     console.log(err)
-        // })
-
-
-    })
-    .catch(err => {
-      console.log("err: ", err);
-    })
-  })
   
 
 router.post('/create', (req, res, next) => {

@@ -82,7 +82,8 @@ router.post("/", /*isLogged,*/ (req, res, next) => {
                 })
 
                 Promise.all([updateMyMatches, updateTheirMatches])
-                .then(() => {
+                .then((result) => {
+                    req.session.currentUser = result;
                     alert('Tienes un match!')
                 })
                 .catch(err => {
