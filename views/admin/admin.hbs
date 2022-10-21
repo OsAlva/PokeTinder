@@ -1,50 +1,32 @@
-<h1>ADMIN</h1>
-<a class="nav-link" href="/auth/logout">Log Out</a>
+<h2 class="encabezamientos">ADMIN</h2>
+<a href="/auth/logout">Log Out</a>
+<br><br>
 
-
-{{#each users}}
-    {{this}}
-    <nav class="navbar navbar-expand-lg bg-light">
+<div class="container d-flex justify-content-center flex-wrap">
+  {{#each users}}
+    <nav class="navbar navbar-expand-lg bg-info border border-3 m-3 miNavbar">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">{{this.username}}</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">{{this.edad}}</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-success" href="https://web.whatsapp.com/">Phone Me: {{this.phoneMe}}</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Salute
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Say Hi!</a></li>
-            <li><a class="dropdown-item" href="#">Send Love!</a></li>
-            {{!-- <li><hr class="dropdown-divider"></li> --}}
-            <li><a class="dropdown-item" href="#">What's yout plan?</a></li>
-          </ul>
-        </li>
-        {{!-- <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
-        </li> --}}
-      </ul>
-      <form class="d-flex" role="search" action="/chats/{{this._id}}" method="POST">
-        {{!-- <input class="form-control me-2" type="text" placeholder="Add note" aria-label="Search" > --}}
-            <input class="form-control me-2" type="text" aria-describedby="emailHelp" name="username" value="{{this.username}}">
-
-        <button class="btn btn-outline-success" type="submit">Update {{this._id}}</button>
-      </form>
-      <form class="d-flex" role="search" action="/admin" method="POST">
-        <input type="hidden" name="userDelete" value="{{_id}}">
-        <button class="btn btn-outline-success" type="submit">delete {{this._id}}</button>
-      </form>
+     
+    <div class="card containerBgImgProfile mt-2 mb-2" style="background-image: url({{img}})">
+    </div>
+    <div class="card border border-primary border-3 m-1 p-1 borderCont">
+      <h5 class="usersTitleProfile">{{this.username}}, {{this.edad}}</h5>
+      <a class="nav-link text-white p-3 rounded-4 opacity-75" href="https://web.whatsapp.com/{{this.phoneMe}}">Contact to {{this.username}} {{this.phoneMe}}</a>
+      <div class="d-flex flex-column align-items-end mt-3">
+        <form class="d-flex" role="search" action="/chats/{{this._id}}" method="POST">
+          <input class="border border-primary border-2 rounded-4 me-2 p-1 " type="textarea" placeholder="About {{this.username}}">
+          <button class="btn btn-outline-warning rounded-pill updateBtn" type="submit">Censure {{this._id}}</button>
+        </form>
+        <hr>
+        <hr>
+        <form class="d-flex" role="search" action="/admin" method="POST">
+          <input type="hidden" name="userDelete" value="{{_id}}">
+          <button class="btn btn-outline-danger rounded-pill deleteBtn" type="submit">Delete {{this._id}}</button>
+        </form>
+      </div>
     </div>
   </div>
 </nav>
     <br>
 {{/each}}
+</div>

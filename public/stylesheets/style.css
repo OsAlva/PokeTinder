@@ -109,6 +109,7 @@ a:hover {
 }
 
 .borderCont{
+  background-color: #00559b;
   width: 100vw;
   height: 300px;
   border-radius: 15px;
